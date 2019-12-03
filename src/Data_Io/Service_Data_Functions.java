@@ -6,7 +6,7 @@
 package Data_Io;
 
 import static Data_Io.Customer_Data_Functions.Customer_Data_File;
-import Users_info.Customer;
+import Users_info.Cusrtomer;
 import Users_info.Service;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,9 +35,9 @@ public class Service_Data_Functions {
                values = line.split(",");
                if(values[0].equals(ServiceName) ){
                    found = true;
-                   service.name = values[0];
-                   service.type = values[1];
-                   service.discription = values[2];
+                   service.setName(values[0]);
+                   service.setType(values[1]);
+                   service.setDiscription(values[2]);
                    
                    return service;
                    
@@ -59,9 +59,9 @@ public class Service_Data_Functions {
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            pw.println(
-                    service.name +","+
-                   service.type +","+
-                   service.discription);
+                    service.getName() +","+
+                   service.getType() +","+
+                   service.getDiscription());
            pw.flush();
            pw.close();
             
@@ -87,11 +87,12 @@ public class Service_Data_Functions {
          while(in.hasNext()){
                 line = in.nextLine();
                 values = line.split(",");
-                if(values[0].equals(service.name)){
+                if(values[0].equals(service.getName())){
                      pw.println(
-                    service.name +","+
-                   service.type +","+
-                   service.discription);
+                    service.getName() +","+
+                   service.getType() +","+
+                   service.getDiscription());
+
                 } else {
                     pw.println(line);
              }
@@ -124,7 +125,7 @@ public class Service_Data_Functions {
          while(in.hasNext()){
                 line = in.nextLine();
                 values = line.split(",");
-                if(values[0].equals(service.name)){
+                if(values[0].equals(service.getName())){
                 } else {
                     pw.println(line);
              }

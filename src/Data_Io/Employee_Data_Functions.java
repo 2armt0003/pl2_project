@@ -6,7 +6,7 @@
 package Data_Io;
 
 import static Data_Io.Customer_Data_Functions.addCustomer;
-import Users_info.Customer;
+import Users_info.Cusrtomer;
 import Users_info.Employee;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,13 +34,12 @@ public class Employee_Data_Functions {
                values = line.split(",");
                if(values[0].equals(employeeName)){
                    found = true;
-                   employee.name = values[0];
-                   employee.phone = values[1];
-                   employee.mail = values[2];
-                   employee.age = values[3];
-                   employee.address = values[4];
-                   employee.experience = values[5];
-                   employee.work_type = values[6];
+                   employee.setName( values[0]);
+                   employee.setPhone(values[1]);
+                   employee.setMail(values[2]);
+                   employee.setAge(values[3]);
+                   employee.setAddress(values[4]);
+                   employee.setWork_type(values[5]);
                    return employee;
                    
                }
@@ -63,13 +62,12 @@ public class Employee_Data_Functions {
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            pw.println(
-                   employee.name +","+
-                   employee.phone +","+
-                   employee.mail +","+
-                   employee.age +","+
-                   employee.address +","+
-                   employee.experience +","+
-                   employee.work_type );
+                   employee.getName() +","+
+                   employee.getPhone() +","+
+                   employee.getMail() +","+
+                   employee.getAge()+","+
+                   employee.getAddress() +","+
+                   employee.getWork_type());
            pw.flush();
            pw.close();
             
@@ -98,14 +96,13 @@ public class Employee_Data_Functions {
                 values = line.split(",");
                    
                if(tempemployee.name.equals(employee.name)){
-                       pw.println(
-                   employee.name +","+
-                   employee.phone +","+
-                   employee.mail +","+
-                   employee.age +","+
-                   employee.address +","+
-                   employee.experience +","+
-                   employee.work_type );
+                    pw.println(
+                   employee.getName() +","+
+                   employee.getPhone() +","+
+                   employee.getMail() +","+
+                   employee.getAge()+","+
+                   employee.getAddress() +","+
+                   employee.getWork_type());
                   
                 }
                else{

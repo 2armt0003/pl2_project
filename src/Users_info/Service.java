@@ -11,10 +11,35 @@ package Users_info;
  */
 public class Service {
     
-    public String name ;
+    private String name ;
     
-    public String type ;
+    private String type ;
     
-    public String discription ;
+    private String discription ;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
+    }
+    
     
 }

@@ -1,11 +1,11 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Data_Io;
 
-import Users_info.Customer;
+import Users_info.Cusrtomer;
 import Users_info.Room;
 import static Data_Io.Customer_Data_Functions.addCustomer;
 import java.io.BufferedWriter;
@@ -33,11 +33,12 @@ public class Room_Data_Functions {
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            pw.println(
-                    room.number +","+
-                   room.type +","+
-                   room.discription +","+
-                   room.services +","+
-                   room.customerName );
+                    room.getNumber() +","+
+                   room.getType() +","+
+                   room.getDateIn() +","+
+                   room.getDateOut()+","+
+                   room.getServices() +","+
+                   room.getCustomerName() );
            pw.flush();
            pw.close();
             
@@ -67,15 +68,16 @@ public class Room_Data_Functions {
                 line = in.nextLine();
                 values = line.split(",");
            
-               if(values[0].equals(room.number)){
+               if(values[0].equals(room.getNumber())){
                    //هنا الغرفه اللي هتكون جيالي هيكون فيها بينات الغرفه مع الضيف اللي هيضاف  
                    //او بينات الغرفه محذوف منها اسم الضيف اكاني رجعت الغرفه فاضيه تاني 
                   pw.println(
-                    room.number +","+
-                   room.type +","+
-                   room.discription +","+
-                   room.services +","+
-                   room.customerName );
+                    room.getNumber() +","+
+                   room.getType() +","+
+                   room.getDateIn() +","+
+                   room.getDateOut()+","+
+                   room.getServices() +","+
+                   room.getCustomerName() );
                 }
                else{
                  pw.println(line);
@@ -115,7 +117,7 @@ public class Room_Data_Functions {
                 line = in.nextLine();
                 values = line.split(",");
            
-               if(values[0].equals(room.number)){
+               if(values[0].equals(room.getNumber())){
                 }
                else{
                  pw.println(line);
@@ -149,11 +151,12 @@ public class Room_Data_Functions {
                values = line.split(",");
                if(values[0].equals(roomNumbr)){
                 found = true;
-                room.number  = values[0] ;
-                room.type  = values[1];
-                room.discription  = values[2];
-                room.services  = values[3];
-                room.customerName = values[4];
+                room.setNumber( values[0]); 
+                room.setType(values[1]); 
+                room.setDateIn(values[2]);
+                room.setDateOut(values[3]);
+                room.setServices(values[4]);
+                room.setCustomerName(values[5]);
                 return room;
                    
                }

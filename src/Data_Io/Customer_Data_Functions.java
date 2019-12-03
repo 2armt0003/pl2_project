@@ -5,7 +5,7 @@
  */
 package Data_Io;
 
-import Users_info.Customer;
+import Users_info.Cusrtomer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -20,8 +20,8 @@ import java.util.Scanner;
 public class Customer_Data_Functions {
    public static String  Customer_Data_File = "CustomerData.txt";
    private static Scanner in ;
-   public static Customer findCustomer(String customerName){
-       Customer customer = new Customer();
+   public static Cusrtomer findCustomer(String customerName){
+       Cusrtomer customer = new Cusrtomer();
        boolean found  = false ;
        String line ;
        String [] values;
@@ -33,11 +33,11 @@ public class Customer_Data_Functions {
                values = line.split(",");
                if(values[0].equals(customerName) ){
                    found = true;
-                   customer.name = values[0];
-                   customer.phone = values[1];
-                   customer.mail = values[2];
-                   customer.nationalty = values[3];
-                   customer.gender = values[4];
+                   customer.setName(values[0]);
+                   customer.setPhone(values[1]);
+                   customer.setMail(values[2]);
+                   customer.setNationalty(values[3]);
+                   customer.setGender(values[4]);
                    return customer;
                    
                }
@@ -53,18 +53,18 @@ public class Customer_Data_Functions {
    }//fun end 
    
    
-   public static void addCustomer(Customer customer){
+   public static void addCustomer(Cusrtomer customer){
        try{
         
            FileWriter fw = new FileWriter(Customer_Data_File, true );
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
-           pw.println(
-                    customer.name +","+
-                   customer.phone +","+
-                   customer.mail +","+
-                   customer.nationalty +","+
-                   customer.gender );
+            pw.println(
+                    customer.getName() +","+
+                   customer.getPhone() +","+
+                   customer.getMail() +","+
+                   customer.getNationalty() +","+
+                   customer.getGender() );
            pw.flush();
            pw.close();
             
@@ -75,11 +75,11 @@ public class Customer_Data_Functions {
    }//fun end 
    
    
-   public static void updateCustomer(Customer customer){
+   public static void updateCustomer(Cusrtomer customer){
       
      File oldfile = new File(Customer_Data_File);
      File newfile = new File("temp.txt");
-     Customer tempCustomer = new Customer();
+     Cusrtomer tempCustomer = new Cusrtomer();
      String line ;
      String [] values;
      try{
@@ -94,11 +94,11 @@ public class Customer_Data_Functions {
                 values = line.split(",");
                 if(values[0].equals(customer.name)){
                      pw.println(
-                    customer.name +","+
-                   customer.phone +","+
-                   customer.mail +","+
-                   customer.nationalty +","+
-                   customer.gender );
+                    customer.getName() +","+
+                   customer.getPhone() +","+
+                   customer.getMail() +","+
+                   customer.getNationalty() +","+
+                   customer.getGender() );
                 } else {
                     pw.println(line);
              }
@@ -115,10 +115,10 @@ public class Customer_Data_Functions {
          
      }
    }//fun end 
-   public static void deletCustomer(Customer customer){
+   public static void deletCustomer(Cusrtomer customer){
      File oldfile = new File(Customer_Data_File);
      File newfile = new File("temp.txt");
-     Customer tempCustomer = new Customer();
+     Cusrtomer tempCustomer = new Cusrtomer();
      String line ;
      String [] values;
      try{
