@@ -5,12 +5,15 @@
  */
 package Data_Io;
 
+import static Data_Io.Employee_Data_Functions.EmployeeDataFile;
 import Users_info.Cusrtomer;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -38,6 +41,7 @@ public class Customer_Data_Functions {
                    customer.setMail(values[2]);
                    customer.setNationalty(values[3]);
                    customer.setGender(values[4]);
+                   customer.setId(values[5]);
                    return customer;
                    
                }
@@ -64,7 +68,8 @@ public class Customer_Data_Functions {
                    customer.getPhone() +","+
                    customer.getMail() +","+
                    customer.getNationalty() +","+
-                   customer.getGender() );
+                   customer.getGender()+","+
+                   customer.getId());
            pw.flush();
            pw.close();
             
@@ -98,7 +103,8 @@ public class Customer_Data_Functions {
                    customer.getPhone() +","+
                    customer.getMail() +","+
                    customer.getNationalty() +","+
-                   customer.getGender() );
+                   customer.getGender()+","+
+                   customer.getId() );
                 } else {
                     pw.println(line);
              }
@@ -146,11 +152,28 @@ public class Customer_Data_Functions {
          
      }catch(IOException e){
         
-     }
-             
+    }
      
-       
    }//end fun 
+    public static ArrayList getAllData(){
+       ArrayList<String> allData = new ArrayList<>();
+       String line;
+       try{
+           FileReader f =  new FileReader(Customer_Data_File);
+           in = new Scanner(f);
+           while(in.hasNext()){
+               line   = in.nextLine();
+               allData.add(line);
+           }
+           f.close();
+           in.close();
+       }catch(IOException e){
+           System.out.println(e.getMessage());
+           
+       }
+       
+       return allData;
+   }//end fun    
        
        
 }//class end 

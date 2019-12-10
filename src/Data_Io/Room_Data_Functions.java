@@ -10,7 +10,9 @@ import Users_info.Room;
 import static Data_Io.Customer_Data_Functions.addCustomer;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,7 +40,8 @@ public class Room_Data_Functions {
                    room.getDateIn() +","+
                    room.getDateOut()+","+
                    room.getServices() +","+
-                   room.getCustomerName() );
+                   room.getCustomerName() +","+
+                    room.getId());
            pw.flush();
            pw.close();
             
@@ -54,14 +57,14 @@ public class Room_Data_Functions {
     public static void updateRoom(Room room){
        File newfile = new File(tempRoom);
        File oldfile = new File(Room_Data_File);
-       
-        Room temp_room_obj = new Room();
+       PrintWriter pw  = null;
+      
         String line ;
         String [] values;
        try{
            FileWriter fw = new FileWriter(newfile, true );
            BufferedWriter bf = new BufferedWriter(fw);
-           PrintWriter pw = new PrintWriter(bf);
+           pw = new PrintWriter(bf);
            in = new Scanner(oldfile);
           
            while(in.hasNext()){
@@ -77,24 +80,27 @@ public class Room_Data_Functions {
                    room.getDateIn() +","+
                    room.getDateOut()+","+
                    room.getServices() +","+
-                   room.getCustomerName() );
+                   room.getCustomerName()+","+
+                    room.getId() );
                 }
                else{
                  pw.println(line);
-                  
                }
-                
-               
            }
-         pw.close();
-           
        }catch(Exception e){
-       
+           System.out.println(e.getMessage());
+       }finally{
+         try{
+         pw.flush();
+         pw.close();
+         in.close();
+         oldfile.delete();
+         File f = new File(Room_Data_File);
+         newfile.renameTo(f);
+         System.out.println("he end room update fun ");
+         }catch(Exception e){System.out.println(e.getMessage());}
        }
-       in.close();
-       oldfile.delete();
-       File f = new File(Room_Data_File);
-       newfile.renameTo(f);
+         
    }//fun end 
      
      
@@ -157,6 +163,7 @@ public class Room_Data_Functions {
                 room.setDateOut(values[3]);
                 room.setServices(values[4]);
                 room.setCustomerName(values[5]);
+                room.setId(values[6]);
                 return room;
                    
                }
@@ -213,5 +220,25 @@ public class Room_Data_Functions {
        
        return records;
    }//end of fun
+   public static ArrayList getAllData(){
+       ArrayList<String> allData = new ArrayList<>();
+       String line;
+       try{
+           FileReader f =  new FileReader(Room_Data_File);
+           in = new Scanner(f);
+           while(in.hasNext()){
+               line   = in.nextLine();
+               allData.add(line);
+           }
+           f.close();
+           in.close();
+       }catch(IOException e){
+           System.out.println(e.getMessage());
+           
+       }
+       
+       return allData;
+   }//end fun
+   
     
 }//end of class

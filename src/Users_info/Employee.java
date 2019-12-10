@@ -12,6 +12,14 @@ package Users_info;
 public class Employee extends Person{
     
     private String age ;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     
     private String address ;
    

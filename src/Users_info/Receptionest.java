@@ -14,13 +14,21 @@ import java.util.Scanner;
  * @author abanob kamal
  */
 public class Receptionest extends Person{
-    private int  password ;
+    private String  password ;
 
-    public int getPassword() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -47,7 +55,7 @@ public class Receptionest extends Person{
     public void setMail(String mail) {
         this.mail = mail;
     }
-    public static int ReceptionestLogin(Receptionest r){
+    public static boolean ReceptionestLogin(Receptionest r){
           String line ;
        String [] values ;
         try{
@@ -55,14 +63,14 @@ public class Receptionest extends Person{
              while(s.hasNext()){
                  line = s.nextLine();
                  values = line.split(",");
-                 if(r.getName() == values[0]){
-                     return 1;
+                 if(r.getName().equals(values[0])){
+                     return true;
                  }
              }
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
-        return 0;
+        return false;
     }
     
 }

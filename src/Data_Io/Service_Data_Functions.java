@@ -38,7 +38,7 @@ public class Service_Data_Functions {
                    service.setName(values[0]);
                    service.setType(values[1]);
                    service.setDiscription(values[2]);
-                   
+                   service.setId(values[3]);
                    return service;
                    
                }
@@ -61,7 +61,8 @@ public class Service_Data_Functions {
            pw.println(
                     service.getName() +","+
                    service.getType() +","+
-                   service.getDiscription());
+                   service.getDiscription()+","+
+                    service.getId());
            pw.flush();
            pw.close();
             
@@ -91,7 +92,8 @@ public class Service_Data_Functions {
                      pw.println(
                     service.getName() +","+
                    service.getType() +","+
-                   service.getDiscription());
+                   service.getDiscription()+","+
+                    service.getId());
 
                 } else {
                     pw.println(line);

@@ -11,6 +11,14 @@ package Users_info;
  */
 public class Cusrtomer extends Person{
     private String nationalty;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     
     private String gender;
 

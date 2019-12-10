@@ -15,13 +15,21 @@ import java.util.Scanner;
  * @author abanob kamal
  */
 public class Admin extends Person {
-    private  int  password ;
+    private  String  password ;
 
-    public int getPassword() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -49,7 +57,7 @@ public class Admin extends Person {
         this.mail = mail;
     }
 
-    public static int  AdminLogin(Admin a) {
+    public static boolean AdminLogin(Admin a) {
        String line ;
        String [] values ;
         try{
@@ -57,14 +65,14 @@ public class Admin extends Person {
              while(s.hasNext()){
                  line = s.nextLine();
                  values = line.split(",");
-                 if(a.getName() == values[0]){
-                     return 1;
+                 if(a.getName().equals(values[0])){
+                     return true;
                  }
              }
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
-        return 0;
+        return false;
     }
     
     

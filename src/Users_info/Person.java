@@ -16,4 +16,5 @@ public class Person {
     
     public  String mail;
     
+    public String id;
 }
