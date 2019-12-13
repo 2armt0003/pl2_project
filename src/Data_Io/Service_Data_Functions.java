@@ -6,7 +6,7 @@
 package Data_Io;
 
 import static Data_Io.Customer_Data_Functions.Customer_Data_File;
-import Users_info.Cusrtomer;
+import Users_info.Customer;
 import Users_info.Service;
 import java.io.BufferedWriter;
 import java.io.File;

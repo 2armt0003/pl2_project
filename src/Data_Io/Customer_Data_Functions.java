@@ -6,7 +6,7 @@
 package Data_Io;
 
 import static Data_Io.Employee_Data_Functions.EmployeeDataFile;
-import Users_info.Cusrtomer;
+import Users_info.Customer;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -23,8 +23,8 @@ import java.util.Scanner;
 public class Customer_Data_Functions {
    public static String  Customer_Data_File = "CustomerData.txt";
    private static Scanner in ;
-   public static Cusrtomer findCustomer(String customerName){
-       Cusrtomer customer = new Cusrtomer();
+   public static Customer findCustomer(String customerName){
+       Customer customer = new Customer();
        boolean found  = false ;
        String line ;
        String [] values;
@@ -57,7 +57,7 @@ public class Customer_Data_Functions {
    }//fun end 
    
    
-   public static void addCustomer(Cusrtomer customer){
+   public static void addCustomer(Customer customer){
        try{
         
            FileWriter fw = new FileWriter(Customer_Data_File, true );
@@ -80,11 +80,11 @@ public class Customer_Data_Functions {
    }//fun end 
    
    
-   public static void updateCustomer(Cusrtomer customer){
+   public static void updateCustomer(Customer customer){
       
      File oldfile = new File(Customer_Data_File);
      File newfile = new File("temp.txt");
-     Cusrtomer tempCustomer = new Cusrtomer();
+     Customer tempCustomer = new Customer();
      String line ;
      String [] values;
      try{
@@ -121,10 +121,10 @@ public class Customer_Data_Functions {
          
      }
    }//fun end 
-   public static void deletCustomer(Cusrtomer customer){
+   public static void deletCustomer(Customer customer){
      File oldfile = new File(Customer_Data_File);
      File newfile = new File("temp.txt");
-     Cusrtomer tempCustomer = new Cusrtomer();
+     Customer tempCustomer = new Customer();
      String line ;
      String [] values;
      try{

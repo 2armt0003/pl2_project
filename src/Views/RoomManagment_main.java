@@ -82,7 +82,7 @@ public class RoomManagment_main extends JFrame{
         this.setSize(1000,800);
         this.setLocationRelativeTo(null);//make program in the center of screen
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(true);
+        
        
     }
     private void view(){
@@ -163,6 +163,7 @@ public class RoomManagment_main extends JFrame{
                 int i = table.getSelectedRow();
                 number_TF.setText(modle.getValueAt(i, 0).toString());
                 Customer_name_TF.setText(modle.getValueAt(i, 5).toString());
+                
                  }
             
          });

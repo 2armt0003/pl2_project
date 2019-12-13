@@ -9,7 +9,7 @@ package Users_info;
  *
  * @author abanob kamal
  */
-public class Cusrtomer extends Person{
+public class Customer extends Person{
     private String nationalty;
 
     public String getId() {

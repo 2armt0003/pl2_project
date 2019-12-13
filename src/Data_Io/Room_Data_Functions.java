@@ -5,7 +5,7 @@
  */
 package Data_Io;
 
-import Users_info.Cusrtomer;
+import Users_info.Customer;
 import Users_info.Room;
 import static Data_Io.Customer_Data_Functions.addCustomer;
 import java.io.BufferedWriter;
@@ -150,8 +150,9 @@ public class Room_Data_Functions {
        boolean found  = false ;
        String line  ;
        String [] values;
-       try{
-           in = new Scanner(new File(Room_Data_File));
+       try{ 
+            FileReader f = new FileReader(Room_Data_File);
+           in = new Scanner(f);
            while(in.hasNext() && !found){
                line  = in.nextLine();
                values = line.split(",");
@@ -164,12 +165,13 @@ public class Room_Data_Functions {
                 room.setServices(values[4]);
                 room.setCustomerName(values[5]);
                 room.setId(values[6]);
-                return room;
+                
                    
                }
            }
+           f.close();
            in.close();
-           
+           return room;
            
        }catch(Exception e){
        
@@ -224,13 +226,13 @@ public class Room_Data_Functions {
        ArrayList<String> allData = new ArrayList<>();
        String line;
        try{
-           FileReader f =  new FileReader(Room_Data_File);
+           File f =  new File(Room_Data_File);
            in = new Scanner(f);
            while(in.hasNext()){
                line   = in.nextLine();
                allData.add(line);
            }
-           f.close();
+          
            in.close();
        }catch(IOException e){
            System.out.println(e.getMessage());

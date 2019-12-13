@@ -7,7 +7,7 @@ package Data_Io;
 
 import static Data_Io.Customer_Data_Functions.addCustomer;
 import static Data_Io.Room_Data_Functions.Room_Data_File;
-import Users_info.Cusrtomer;
+import Users_info.Customer;
 import Users_info.Employee;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -45,12 +45,12 @@ public class Employee_Data_Functions {
                    employee.setAddress(values[4]);
                    employee.setWork_type(values[5]);
                    employee.setId(values[6]);
-                   return employee;
+                   
                    
                }
            }
            in.close();
-           
+           return employee;
            
        }catch(Exception e){
        
@@ -59,11 +59,11 @@ public class Employee_Data_Functions {
        return null;
    }//fun end 
    
-    public static void addEmployee(Employee employee, String file){
+    public static void addEmployee(Employee employee){
       
        try{
            //انا هنا باخداسم الملف اللي هيتفتح علشان مره هخزن في الموقت و مره في الاساسي 
-           FileWriter fw = new FileWriter(file, true );
+           FileWriter fw = new FileWriter(EmployeeDataFile, true );
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            pw.println(
