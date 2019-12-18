@@ -14,9 +14,13 @@ import Users_info.Employee;
 
 import Users_info.Receptionest;
 import Users_info.Room;
+import Views.Login_Screen;
+import Views.RoomManagment_main;
+import Views.ServiceModule;
 import Views.UserManagemnet_employee;
 import Views.UserManagment_customer;
 import Views.UserModule_main;
+import Views.filterRoom;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +28,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import sun.security.util.PropertyExpander;
 import views.*;
 
 
@@ -40,51 +47,20 @@ public class Pl2_project_test {
    
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
-     //  new Login_Screen();  
+     Login_Screen l =   new Login_Screen();  l.setVisible(true);
+       // ServiceModule s = new ServiceModule(); s.setVisible(true);
      // new UserModule_main();
       // new RoomManagment_bill (); 
-     // new  UserManagment_customer();
-    new UserManagemnet_employee();
-    try{ }
-    catch(Exception e){System.out.println(e.getMessage());}
-    // new NewClass();
-   // RoomManagment_main   r = new RoomManagment_main();r.setVisible(true);
-      
-      /* Room r1  =new Room();
-       Room r2  =new Room();
-       Room r3  =new Room();
-       
-       r1.setNumber("1"); 
-       r1.setType("single"); 
-       r1.setDateIn("1/12");
-       r1.setDateOut("1/1");
-       r1.setServices("home");
-       r1.setCustomerName("....");
-       
-        r2.setNumber("2"); 
-       r2.setType("double"); 
-       r2.setDateIn("1/5");
-       r2.setDateOut("1/1");
-       r2.setServices("home");
-       r2.setCustomerName("abanoub");
-       
-        r3.setNumber("3"); 
-       r3.setType("trible"); 
-       r3.setDateIn("1/12");
-       r3.setDateOut("1/1");
-       r3.setServices("home");
-       r3.setCustomerName("....");
-       
-       Room_Data_Functions.addRoom(r1);
-       Room_Data_Functions.addRoom(r2);
-       Room_Data_Functions.addRoom(r3);
-      Room_Data_Functions.updateRoom(r2);*/
-       
-       
-        
-    }
-   
+     //UserManagment_customer f =  new  UserManagment_customer();
     
+    //new UserManagemnet_employee();
+   
+    // new NewClass();
+    //RoomManagment_main   r = new RoomManagment_main();r.setVisible(true);
+    // filterRoom f=new filterRoom();
+   
+     
+}
 }
         
         

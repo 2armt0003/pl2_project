@@ -8,6 +8,7 @@ package Views;
 import Data_Io.Employee_Data_Functions;
 import Data_Io.Employee_Data_Functions;
 import Users_info.Employee;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -21,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author abanob kamal
  */
 public class UserManagemnet_employee extends JFrame{
+    Button back = new Button("Back");
     JFrame frame;
     JPanel nourth , p2 , p3;
     JLabel l1 , l2, l3 , l4 , l5 , l6 ,l7;
@@ -36,6 +38,7 @@ public class UserManagemnet_employee extends JFrame{
         
     public UserManagemnet_employee(){
         view();
+        backbutton();
         deleteEmloyee();
         updateEmployee();
         addemployee();
@@ -46,7 +49,8 @@ public class UserManagemnet_employee extends JFrame{
         this.setSize(1000,800);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //this.setVisible(true);
     }
     private void view(){
         nourth= new JPanel();
@@ -67,6 +71,10 @@ public class UserManagemnet_employee extends JFrame{
         title2.setForeground(Color.WHITE);
         title2.setFont(f2);
         title2.setBounds(410,100,300,70);
+        
+        back.setBounds(5,5,30,15);
+       
+        nourth.add(back);
         nourth.add(title);
         nourth.add(title2);
          
@@ -162,12 +170,12 @@ public class UserManagemnet_employee extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 int i = t.getSelectedRow();
-                t1.setText(t.getValueAt(i, 1).toString());
-                t2.setText(t.getValueAt(i, 2).toString());
-                t3.setText(t.getValueAt(i, 3).toString());
-                t4.setText(t.getValueAt(i, 5).toString());
-                c1.setSelectedItem(t.getValueAt(i, 4).toString());
-                c2.setSelectedItem(t.getValueAt(i, 6).toString());
+                t1.setText(t.getValueAt(i, 0).toString());
+                t2.setText(t.getValueAt(i, 1).toString());
+                t3.setText(t.getValueAt(i, 2).toString());
+                t4.setText(t.getValueAt(i, 4).toString());
+                c1.setSelectedItem(t.getValueAt(i, 3).toString());
+                c2.setSelectedItem(t.getValueAt(i, 5).toString());
                  }
             
          });
@@ -206,6 +214,18 @@ public class UserManagemnet_employee extends JFrame{
          
         });
         
+    }
+    private void backbutton(){
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                UserModule_main main = new UserModule_main();
+                main.setVisible(true);
+            }
+            
+
+        });
     }
       
       

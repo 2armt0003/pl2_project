@@ -7,6 +7,7 @@ package Views;
 
 import Data_Io.Customer_Data_Functions;
 import Users_info.Customer;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author abanob kamal
  */
 public class UserManagment_customer extends JFrame{
+    Button back = new Button("Back");
        //jlabales
     JLabel name  = new JLabel("Name");
     JLabel phone = new JLabel("Phone");
@@ -35,43 +37,50 @@ public class UserManagment_customer extends JFrame{
     JTextField phone_TF = new JTextField();
     JTextField mail_TF = new JTextField("Mail");
     //spinner
-    String [] nationalty_spinner = {"single", "double"};
-    SpinnerListModel sl1 = new SpinnerListModel(nationalty_spinner);
-    JSpinner nationalty_list = new JSpinner(sl1);
+    
     
     
     
  
     
     //bottoms
+    JButton Add= new JButton("Add");
+    JButton Delete = new JButton("Delete");
     JButton update = new JButton("update");
     JButton clear = new JButton("clear");
     JButton refresh = new JButton("refresh");
     
     //table 
-         String colums[] = {"NUmber", "Type", "Date In","Date out","Service","Customer Name"};     
+         String colums[] = {"Name", "phone","mail", "nationalty","gender"};     
          String data[][] = {                           };
         DefaultTableModel modle = new DefaultTableModel(data, colums);
         JTable table = new JTable(modle);
         JScrollPane sp=new JScrollPane(table);
        
     //radio bottum
-        JRadioButton radioButton_1 = new JRadioButton("Red",true);
-        JRadioButton radioButton_2 = new JRadioButton("Blue");
+        JRadioButton radioButton_1 = new JRadioButton("Male",true);
+        JRadioButton radioButton_2 = new JRadioButton("FeMale");
         ButtonGroup group = new ButtonGroup();                   
-        
+     //  JComboBox   
+       String s1[] = { "Egyption","forigner" }; 
+       JComboBox Nationalty = new JComboBox(s1);    
        
        
     public UserManagment_customer() throws HeadlessException{
         
           view();
-        
-    
+        backbutton();
+        addCustemr();
+        updatCustemr();
+        deleteCustemr();
+        clearFun();
+        refreshTable();
+        tableClick();
         this.setLayout(null);
         this.setSize(1000,800);
         this.setLocationRelativeTo(null);//make program in the center of screen
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(true);
+       // this.setVisible(true);
         this.setResizable(false); 
     }
         
@@ -88,7 +97,7 @@ public class UserManagment_customer extends JFrame{
         nourth.setBorder(BorderFactory.createTitledBorder(""));// to make border areound
         nourth.setBackground(Color.darkGray);
         nourth.setLayout(null);
-        JLabel title = new JLabel("Room Management");
+        JLabel title = new JLabel("User Management");
         JLabel title2 = new JLabel("(customer page)");
         Font f = new Font("serif", Font.BOLD, 50 );
         Font f2 = new Font("serif", Font.BOLD, 30 );
@@ -100,6 +109,8 @@ public class UserManagment_customer extends JFrame{
         title2.setBounds(410,100,300,70);
         nourth.add(title);
         nourth.add(title2);
+        back.setBounds(5,5,30,15);
+        nourth.add(back);
         
         //Jpanel west
         West.setBounds(5,205,350,540);
@@ -113,9 +124,17 @@ public class UserManagment_customer extends JFrame{
          phone_TF.setBounds(140,50,130,25);
         mail.setBounds(10,90,130,25);
          mail_TF.setBounds(140,90,130,25);
-      
-        update.setBounds(10,250,270,25);
-        clear.setBounds(10,280,270,25);
+        nationalty.setBounds(10,130,130,25);
+        Nationalty.setBounds(140,130,130,25);
+        gender.setBounds(10,170,130,25);
+        radioButton_1.setBounds(80, 190, 100, 25);
+        radioButton_2.setBounds(230, 190, 100, 25);
+         
+         
+        Add.setBounds(10,280,270,25);
+        Delete.setBounds(10,310,270,25);
+        update.setBounds(10,340,270,25);
+        clear.setBounds(10,370,270,25);
         West.add(name);
          West.add(name_TF);
         West.add(phone);
@@ -123,10 +142,13 @@ public class UserManagment_customer extends JFrame{
         West.add(mail);
          West.add(mail_TF); 
         West.add(nationalty);
-         West.add(nationalty_list);
+         West.add(Nationalty);
         group.add(radioButton_1);                             
         group.add(radioButton_2); 
-        
+        West.add(radioButton_1);                             
+        West.add(radioButton_2);
+        West.add(Add);
+        West.add(Delete);
         West.add(update);
         West.add(clear);
         //**************************************************
@@ -150,6 +172,131 @@ public class UserManagment_customer extends JFrame{
         
        
     }  
-       
+     private void backbutton(){
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                UserModule_main main = new UserModule_main();
+                main.setVisible(true);
+            }
+            
+
+        });
+    }
+       private void  tableClick(){
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int i =table.getSelectedRow();
+                name_TF.setText(modle.getValueAt(i, 0).toString());
+                phone_TF.setText(modle.getValueAt(i, 1).toString());
+                mail_TF.setText(modle.getValueAt(i, 2).toString());
+                 }
+            
+         });
+         }//end fun
+        Customer tempCustoemr = new  Customer();
+    private void updatCustemr(){
+     
+       update.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+                
+                tempCustoemr.setName(name_TF.getText().toString());
+                tempCustoemr.setPhone(phone_TF.getText().toString());
+                tempCustoemr.setMail(mail_TF.getText().toString());
+                tempCustoemr.setNationalty(Nationalty.getSelectedItem().toString());
+                if(radioButton_1.isSelected()){
+                    tempCustoemr.setGender(radioButton_1.getText().toString());
+                }
+                else{
+                   tempCustoemr.setGender(radioButton_2.getText().toString()); 
+                }
+                
+                
+               Customer_Data_Functions.updateCustomer(tempCustoemr);
+            }       
+        });
+    }//end fun
+      private void deleteCustemr(){
+     
+      Delete.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+                
+                 
+              tempCustoemr.setName(name_TF.getText().toString());
+                tempCustoemr.setPhone(phone_TF.getText().toString());
+                tempCustoemr.setMail(mail_TF.getText().toString());
+                tempCustoemr.setNationalty(Nationalty.getSelectedItem().toString());
+                if(radioButton_1.isSelected()){
+                    tempCustoemr.setGender(radioButton_1.getText().toString());
+                }
+                else{
+                   tempCustoemr.setGender(radioButton_2.getText().toString()); 
+                }
+                
+               
+               Customer_Data_Functions.deletCustomer(tempCustoemr);
+            }       
+        });
+    }//end fun*/  
+    private void addCustemr(){
+     
+      Add.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              
+                
+              tempCustoemr.setName(name_TF.getText().toString());
+                tempCustoemr.setPhone(phone_TF.getText().toString());
+                tempCustoemr.setMail(mail_TF.getText().toString());
+                tempCustoemr.setNationalty(Nationalty.getSelectedItem().toString());
+                 if(radioButton_1.isSelected()){
+                    tempCustoemr.setGender(radioButton_1.getText().toString());
+                }
+                else{
+                   tempCustoemr.setGender(radioButton_2.getText().toString()); 
+                }
+                
+                
+               Customer_Data_Functions.addCustomer(tempCustoemr);
+            }       
+        });
+    }//end fun
+        private void clearFun(){
+        clear.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                name_TF.setText("  ");
+                phone_TF.setText("  ");
+                mail_TF.setText("  ");
+              
+              
+            }
+         
+        });
+        
+    }//end fun
+          private void refreshTable(){
+        refresh.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+              modle.setNumRows(0);
+              ArrayList<String> allData = new ArrayList<>();
+              allData = Customer_Data_Functions.getAllData();
+              String [] values;
+              for(String line : allData){
+                values = line.split(",");
+                
+                modle.addRow(values);
+                   }
+            }
+               
+        });
+    }
    
 }//end class

@@ -6,6 +6,7 @@
 package Data_Io;
 
 import static Data_Io.Customer_Data_Functions.Customer_Data_File;
+import static Data_Io.Room_Data_Functions.Room_Data_File;
 import Users_info.Customer;
 import Users_info.Service;
 import java.io.BufferedWriter;
@@ -13,6 +14,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -39,7 +41,7 @@ public class Service_Data_Functions {
                    service.setType(values[1]);
                    service.setDiscription(values[2]);
                    service.setId(values[3]);
-                   return service;
+                   
                    
                }
            }
@@ -49,13 +51,12 @@ public class Service_Data_Functions {
        }catch(Exception e){
        
        }
-     
-       return null;
+     return service;
    }//fun end 
    public static void addService(Service service){
        try{
           
-           FileWriter fw = new FileWriter(Customer_Data_File, true );
+           FileWriter fw = new FileWriter(Service_Data_File, true );
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            pw.println(
@@ -65,6 +66,7 @@ public class Service_Data_Functions {
                     service.getId());
            pw.flush();
            pw.close();
+           fw.close();
             
            
        }catch(Exception e){
@@ -100,19 +102,23 @@ public class Service_Data_Functions {
              }
                
          }
+       
         in.close();
         pw.flush();
         pw.close();
+        fw.close();
         oldfile.delete();
-        File f = new File(Customer_Data_File);
+        File f = new File(Service_Data_File);
         newfile.renameTo(f);
          
      }catch(IOException e){
         
      }
    }//fun end 
+    
+    
      public static void deletService(Service service){
-     File oldfile = new File(Customer_Data_File);
+     File oldfile = new File(Service_Data_File);
      File newfile = new File("temp.txt");
   
      String line ;
@@ -133,11 +139,13 @@ public class Service_Data_Functions {
              }
                
          }
+        
         in.close();
         pw.flush();
         pw.close();
+        fw.close();
         oldfile.delete();
-        File f = new File(Customer_Data_File);
+        File f = new File(Service_Data_File);
         newfile.renameTo(f);
          
      }catch(IOException e){
@@ -147,5 +155,24 @@ public class Service_Data_Functions {
      
        
    }//end fun 
+    public static ArrayList getAllData(){
+       ArrayList<String> allData = new ArrayList<>();
+       String line;
+       try{
+           File f =  new File(Service_Data_File);
+           in = new Scanner(f);
+           while(in.hasNext()){
+               line   = in.nextLine();
+               allData.add(line);
+           }
+          
+           in.close();
+       }catch(IOException e){
+           System.out.println(e.getMessage());
+           
+       }
+       
+       return allData;
+   }//end fun
     
 }//end of class

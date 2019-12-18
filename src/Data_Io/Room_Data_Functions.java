@@ -14,7 +14,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -97,7 +99,7 @@ public class Room_Data_Functions {
          oldfile.delete();
          File f = new File(Room_Data_File);
          newfile.renameTo(f);
-         System.out.println("he end room update fun ");
+        
          }catch(Exception e){System.out.println(e.getMessage());}
        }
          
@@ -181,7 +183,7 @@ public class Room_Data_Functions {
    }//fun end 
      
      
-   public static ArrayList roomsFilter(String notbusy, String type, String services){
+   public static ArrayList roomsFilter(boolean notbusy, String type, boolean nearCheckOut){
       ArrayList<String>  records = new ArrayList<String>();
       boolean flag_line = false;//هنا انا عملت فلاج علشان ماضفش نفس السطر كذا مره 
       String line ;
@@ -191,22 +193,35 @@ public class Room_Data_Functions {
           while(in.hasNext()){
               line = in.nextLine();
               values = line.split(",");
-              if(notbusy != null){
-                  if(values[4].equals("....")){
+              if(notbusy != false){
+                  if(values[5].equals("....")){
                       if(flag_line==false){
                          records.add(line);
                       }
                   }
               }
-              if(type != null){
+              if(!type.equals("  ")){
                   if(values[1].equals(type)){
                       if(flag_line==false){
                          records.add(line);
                       }
                   }
               }
-              if(services != null){
-                  if(values[3].equals(services)){
+              if(nearCheckOut != false){
+               
+                String start = values[3];
+                SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
+                Date enddate = new Date(),startdate = null; 
+    
+               try{
+                    startdate = formatter.parse(start);
+                }catch(Exception e){
+                        System.out.println(e.getMessage());
+                }
+                long def = enddate.getTime() - startdate.getTime();
+                def = def / (1000*60*60*24); 
+                   
+                if(def >0 && def <= 2){
                       if(flag_line==false){
                          records.add(line);
                       }
@@ -215,7 +230,7 @@ public class Room_Data_Functions {
               
               
           }
-          
+          System.out.println("end filter ");
       }catch(Exception e){
           
       }

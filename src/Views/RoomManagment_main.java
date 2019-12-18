@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -29,8 +30,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author abanob kamal
  */
-public class RoomManagment_main extends JFrame{
-
+public class RoomManagment_main extends JFrame implements ActionListener{
+    //menu bar
+    JMenuBar menuBar= new JMenuBar();
+    JMenu Other = new JMenu("File");
+    JMenuItem filterPage = new JMenuItem("Filter Page");
+    JMenuItem billPage = new JMenuItem("Bill Page");
+    JMenuItem back = new JMenuItem("Back");
    
     
     //jlabales
@@ -58,7 +64,6 @@ public class RoomManagment_main extends JFrame{
     datechooser.beans.DateChooserCombo Date_in = new datechooser.beans.DateChooserCombo();
     datechooser.beans.DateChooserCombo Date_out = new datechooser.beans.DateChooserCombo();
     SimpleDateFormat DateFormat = new SimpleDateFormat("ddd/MMM/YYY");
-    
     //bottoms
     JButton update = new JButton("update");
     JButton clear = new JButton("clear");
@@ -77,7 +82,7 @@ public class RoomManagment_main extends JFrame{
         clearFun();
         updataRoom();
         refreshTable();
-         
+        this.setJMenuBar(menuBar);
         this.setLayout(null);
         this.setSize(1000,800);
         this.setLocationRelativeTo(null);//make program in the center of screen
@@ -86,7 +91,15 @@ public class RoomManagment_main extends JFrame{
        
     }
     private void view(){
-       
+        //menu 
+        Other.add(filterPage);
+        Other.add(billPage);
+        Other.addSeparator();
+        Other.add(back);
+        menuBar.add(Other);
+        filterPage.addActionListener(this);
+        billPage.addActionListener(this);
+        back.addActionListener(this);
       
         //Jpanel
         JPanel nourth = new JPanel();
@@ -104,6 +117,7 @@ public class RoomManagment_main extends JFrame{
         title.setFont(f);
         title.setBounds(300,50,500,70);
         nourth.add(title);
+        
         
         //Jpanel west
         West.setBounds(5,205,350,540);
@@ -218,6 +232,28 @@ public class RoomManagment_main extends JFrame{
         });
         
     }//end fun
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == filterPage){
+            this.setVisible(false);
+            filterRoom f  = new filterRoom();
+            f.setVisible(true);
+                    
+        }
+        if(e.getSource() == billPage){
+            this.setVisible(false);
+            RoomManagment_bill b = new RoomManagment_bill();
+            b.setVisible(true);
+        }
+        if(e.getSource() == back){
+            this.setVisible(false);
+            AdminView a = new AdminView();
+            a.setVisible(true);
+                                
+            
+        }
+    }
     
    
     

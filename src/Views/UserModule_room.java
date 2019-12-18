@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package views;
+package Views;
+
+
 import Users_info.*;
 import Data_Io.*;
 import static Data_Io.Room_Data_Functions.addRoom;
@@ -32,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
  * @author nourmaher
  */
 public class UserModule_room extends JFrame  { 
+    Button back = new Button("Back");
     //labels
     JLabel numberjlabel,typejlabel,servicejlabel;
     
@@ -54,6 +57,7 @@ public class UserModule_room extends JFrame  {
    public  UserModule_room () {
     
         view();
+        backbutton();
         refrshTable();
         updataRoom();
         add_Room();
@@ -63,7 +67,7 @@ public class UserModule_room extends JFrame  {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(1000 , 800);    
         this.setLayout(null);    
-        this.setVisible(true);
+       // this.setVisible(true);
         this.setLocation(500, 100);
         
         
@@ -92,6 +96,8 @@ public class UserModule_room extends JFrame  {
         title2.setBounds(365,100,400,70);
         nourth.add(title);
         nourth.add(title2);
+         back.setBounds(5,5,30,15);
+        nourth.add(back);
         //*******************************
         
         //Jpanel west
@@ -250,6 +256,19 @@ public class UserModule_room extends JFrame  {
          }
         });
     }//end fun
+      private void backbutton(){
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                UserModule_main main = new UserModule_main();
+                main.setVisible(true);
+            }
+            
+
+        });
+    }
+      
 
    
 }//end class

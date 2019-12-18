@@ -33,7 +33,7 @@ public class Login_Screen extends JFrame {
         this.setTitle("login page ");
         this.setLocationRelativeTo(null);//make program in the center of screen 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(true);
+       // this.setVisible(true);
     }
     
     void Login_panal(){
@@ -85,12 +85,14 @@ public class Login_Screen extends JFrame {
             r.setPassword(TF2);
             
             if(Admin.AdminLogin(ad) == true){
-                RoomManagment_main main = new RoomManagment_main();
-                main.setVisible(true);
                 next();
+                AdminView main = new AdminView();
+                main.setVisible(true);
+                
                 
             }
             else if(Receptionest.ReceptionestLogin(r) == true){
+                next();
                 UserModule_main u= new UserModule_main();
                 u.setVisible(true);
                

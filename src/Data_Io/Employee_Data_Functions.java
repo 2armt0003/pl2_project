@@ -76,7 +76,7 @@ public class Employee_Data_Functions {
                    employee.getId());
            pw.flush();
            pw.close();
-            
+           fw.close();
            
        }catch(Exception e){
            
@@ -87,7 +87,7 @@ public class Employee_Data_Functions {
     public static void updateEmployee(Employee employee){
        File newfile = new File("temp.txt");
        File oldfile = new File(EmployeeDataFile);
-       Employee tempemployee = new Employee();
+     
        String line  ;
        String [] values;
 
@@ -96,12 +96,12 @@ public class Employee_Data_Functions {
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            in = new Scanner(oldfile);
-           in.useDelimiter("[,\n]");
+         
            while(in.hasNext()){
                 line = in.nextLine();
                 values = line.split(",");
                    
-               if(tempemployee.name.equals(employee.name)){
+               if(values[0].equals(employee.getName())){
                     pw.println(
                    employee.getName() +","+
                    employee.getPhone() +","+
@@ -120,11 +120,13 @@ public class Employee_Data_Functions {
                
            }
            pw.close();
+           //fw.close();
            
        }catch(Exception e){
        
        }
        in.close();
+       
        oldfile.delete();
        File f = new File(EmployeeDataFile);
        newfile.renameTo(f);
@@ -134,7 +136,7 @@ public class Employee_Data_Functions {
        
       File newfile = new File("temp.txt");
        File oldfile = new File(EmployeeDataFile);
-       Employee tempemployee = new Employee();
+      
        String line  ;
        String [] values;
 
@@ -143,12 +145,12 @@ public class Employee_Data_Functions {
            BufferedWriter bf = new BufferedWriter(fw);
            PrintWriter pw = new PrintWriter(bf);
            in = new Scanner(oldfile);
-           in.useDelimiter("[,\n]");
+          
            while(in.hasNext()){
                 line = in.nextLine();
                 values = line.split(",");
                    
-               if(tempemployee.name.equals(employee.name)){
+               if(values[0].equals(employee.name)){
                 
                 }
                else{
@@ -159,6 +161,8 @@ public class Employee_Data_Functions {
                
            }
            pw.close();
+           fw.close();
+           fw.close();
            
        }catch(Exception e){
        

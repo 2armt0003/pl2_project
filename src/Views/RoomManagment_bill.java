@@ -10,8 +10,11 @@ import Data_Io.Customer_Data_Functions;
 import Data_Io.Room_Data_Functions;
 import Users_info.Customer;
 import Users_info.Room;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -22,8 +25,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author abanob kamal
  */
-public class RoomManagment_bill extends JFrame {
-    
+public class RoomManagment_bill extends JFrame implements ActionListener{
+    //buttom 
+    Button back = new Button("Back");
 
     JLabel l1 , l2,
         l3  =new JLabel("Billing Management");;
@@ -42,12 +46,12 @@ public class RoomManagment_bill extends JFrame {
         CheckOut();
         this.setLayout(null);
          this.setSize(1000, 800);
-         this.setVisible(true);
+         
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
          this.setResizable(false);
          this.setLocationRelativeTo(null);
-      
+        // this.setVisible(true);
        
     }//end constractor
     
@@ -58,6 +62,9 @@ public class RoomManagment_bill extends JFrame {
          nourth.setBackground(Color.GRAY);
          nourth.setLayout(null);
          nourth.add(l3);
+         back.setBounds(5,5,30,15);
+         back.addActionListener(this);
+         nourth.add(back);
         //*******************************
         
         // panel west
@@ -187,5 +194,15 @@ public class RoomManagment_bill extends JFrame {
            }
          });
     }//end fun
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == back){
+            this.setVisible(false);
+            RoomManagment_main r = new RoomManagment_main();
+            r.setVisible(true);
+        }
+    }
+   
     
 }//end class
